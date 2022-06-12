@@ -2,31 +2,41 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+const int MAX_CHAR = 26;
 void ordenaNumeros(int [], int tam);
+void ordenaString(string &str);
 
 int main(){
+	
+	int qtdeElementos = 0;
+	int array[] = {};
+	int valores = 0;
+	string letras;
+	int i = 0;
 	int opc;
 	
-	cout << "Digite uma opcao: \n1-Ordenar numeros \n2-Ordenar palavras \n3-ordenar letras \n4-Sair";
-	cin >> opc;
-	
 	while(1){
+			cout << "--------------MENU--------------\n";
+			cout << "1-Ordenar numeros \n2-Ordenar palavras \n3-Ordenar letras \n4-Sair\n";
+			cout << "\nDigite uma opcao: ";
+			cin >> opc;
+			system("cls");
 			switch(opc){
 				case 1:
-					
-					system("cls");
-					int array[] = {};
-					int qtdeElementos = 0;
-					int valores = 0;
 					cout << "Quantos elementos deseja inserir no seu array? ";
-					cin >> qtdeElementos;
+					cin >> qtdeElementos; 
 					
-					for(int i = 0; i < qtdeElementos; i++){
-						cout << "Digite os valores do seu array: ";
-						cin >> valores;
+					while(i < qtdeElementos){
+						printf ("Digite o %d valor: ", i+1);
+						scanf ("%d", &valores);
 						array[i] = valores;
+						i++;
 					}
-					int tam = sizeof(array) / sizeof(array[0]);
+					
+					cout << "\nValores ordenados: ";
+					ordenaNumeros(array, qtdeElementos);
+					cout << "\n\n";
+					
 				break;
 				
 				case 2:
@@ -35,7 +45,11 @@ int main(){
 				break;
 				
 				case 3:
-					system("cls");
+					printf ("Digite uma sequencia de letras: ");
+					scanf ("%s", &letras);
+					
+					cout << "\nLetras ordenadas: ";
+					ordenaString(letras);
 					
 				break;
 				
@@ -51,12 +65,6 @@ int main(){
 			}
 	}
 	
-	
-//	int array[] = { 1, 5, 8, 9, 6, 7, 3, 4, 2, 0 };
-//	int tam = sizeof(array) / sizeof(array[0]);
-//	
-//	ordenaNumeros(array, tam);
-	
 	return 0;
 }
 
@@ -69,4 +77,20 @@ void ordenaNumeros(int array[], int tam){
 		cout << array[i] << " ";
 	}
         
+}
+
+void ordenaString(string &str){
+
+    int charCount[MAX_CHAR] = {0};
+
+    for (int i=0; i<str.length(); i++){
+    	charCount[str[i]-'a']++; 
+	}  
+     
+    for (int i=0;i<MAX_CHAR;i++){
+    	for (int j=0;j<charCount[i];j++){
+    		cout << (char)('a'+i);
+		}
+	}
+         
 }
